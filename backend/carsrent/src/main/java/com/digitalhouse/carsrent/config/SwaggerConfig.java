@@ -25,7 +25,7 @@ public class SwaggerConfig {
                 .useDefaultResponseMessages(false)
                 .select()
                 .apis(RequestHandlerSelectors
-                              .basePackage("com.digitalhouse.carsrent..rest.controller"))
+                              .basePackage("com.digitalhouse.carsrent.rest.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .securityContexts(Arrays.asList(securityContext()))

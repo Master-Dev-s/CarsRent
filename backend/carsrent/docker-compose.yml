@@ -20,9 +20,10 @@ services:
     container_name: mysql-digitalhouse
     environment:
       MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: mysql
+      MYSQL_DATABASE: carsrentdh
       MYSQL_USER: admin
       MYSQL_PASSWORD: admin
+      MYSQL_ROOT_HOST: '%'
     ports:
       - "3307:3306"
     volumes:
@@ -31,6 +32,7 @@ services:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       timeout: 5s
       retries: 10
+
 
 
 volumes:
