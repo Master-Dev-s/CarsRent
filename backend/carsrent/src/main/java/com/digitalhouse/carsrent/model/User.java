@@ -1,5 +1,6 @@
 package com.digitalhouse.carsrent.model;
 
+import com.digitalhouse.carsrent.rest.dto.user.UserDTO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
@@ -41,4 +42,20 @@ public class User {
 
     @Column(name = "jwt_token")
     private String jwtToken;
+
+    // Método de conversão de User para UserDTO
+    public UserDTO toDTO() {
+        return new UserDTO(id, firstName, lastName, email, password);
+    }
+
+    // Método de conversão de UserDTO para User
+    public static User fromDTO(UserDTO dto) {
+        User user = new User();
+        user.setId(dto.getId());
+        user.setFirstName(dto.getFirstName());
+        user.setLastName(dto.getLastName());
+        user.setEmail(dto.getEmail());
+        user.setPassword(dto.getPassword());
+        return user;
+    }
 }
