@@ -12,9 +12,28 @@ import {
 import { useForm, Controller } from "react-hook-form";
 import { Link as RouterLink } from "react-router-dom";
 import { UserService } from "../../../core/service/user/UserService";
+import {yupResolver} from "@hookform/resolvers/yup";
+import * as yup from 'yup';
+
+const validationSchema = yup.object().shape({
+    email: yup
+        .string()
+        .email('Email inválido')
+        .required('Email é obrigatório'),
+    password: yup
+        .string()
+        .required('Senha é obrigatória'),
+});
 
 export default function Login() {
-    const { control, handleSubmit } = useForm();
+    const {
+        handleSubmit,
+        control,
+        formState: { errors },
+    } = useForm({
+        mode: "onBlur",
+        resolver: yupResolver(validationSchema),
+    });
 
     const onSubmit = async (data: any) => {
         console.log(data);
@@ -26,11 +45,11 @@ export default function Login() {
     };
 
     return (
-        <Box width="100%" maxW="500px" mx="auto" mt="3rem">
+        <Box width="100%" maxW="500px" mx="auto" mt="3rem" >
             <form onSubmit={handleSubmit(onSubmit)}>
                 <VStack spacing={4}>
                     <Text fontSize="2xl" fontWeight="bold">Iniciar Sessão</Text>
-                    <FormControl id="email">
+                    <FormControl id="email" isInvalid={!!errors.email}>
                         <FormLabel>Digite seu e-mail</FormLabel>
                         <Controller
                             name="email"
@@ -40,8 +59,9 @@ export default function Login() {
                                 <Input placeholder="Email" type="email" {...field} />
                             )}
                         />
+                        {errors.email && <Text color="red.500">{errors.email?.message as string}</Text>}
                     </FormControl>
-                    <FormControl id="password">
+                    <FormControl id="password" isInvalid={!!errors.password}>
                         <FormLabel>Senha</FormLabel>
                         <Controller
                             name="password"
@@ -51,6 +71,7 @@ export default function Login() {
                                 <Input placeholder="Senha" type="password" {...field} />
                             )}
                         />
+                        {errors.password && <Text color="red.500">{errors.password?.message as string}</Text>}
                     </FormControl>
                     <Button width="full" colorScheme="blue" type="submit">
                         Entrar

@@ -112,7 +112,7 @@ export default function Home() {
                         </GridItem>
                     </Grid>
                 </Box>
-
+                <br/>
                 <CategoryCarousel categories={categories}/>
 
 
