@@ -38,8 +38,8 @@ export default function Register() {
     return (
         <Box width="100%" maxW="500px" mx="auto" mt="3rem" >
             <form onSubmit={handleSubmit(onSubmit)}>
-                <VStack spacing={4}>
-                    {/*<Text fontSize="2xl" fontWeight="bold">Criar Conta</Text>*/}
+                <VStack spacing={2}>
+                    <Text fontSize="2xl" fontWeight="bold">Criar Conta</Text>
                     <FormControl id="email">
                         <FormLabel>Digite seu e-mail</FormLabel>
                         <Controller
@@ -95,6 +95,7 @@ export default function Register() {
                             )}
                         />
                     </FormControl>
+                    <br/>
                     <Button width="full" colorScheme="blue" type="submit">
                         Criar Conta
                     </Button>
