@@ -11,13 +11,17 @@ function App() {
         <div>
             <ChakraProvider>
                 <Header/>
-                <div style={{marginBottom: '5rem', marginLeft: '1rem', marginRight: '1rem', marginTop: '0rem'}}>
+                <div style={{
+                    marginBottom: '5rem',
+                    marginLeft: '1rem',
+                    marginRight: '1rem',
+                    marginTop: '-2rem'
+                }}>
                     <RoutesConfig/>
                 </div>
                 <Footer/>
             </ChakraProvider>
         </div>
-
     )
 }
 
