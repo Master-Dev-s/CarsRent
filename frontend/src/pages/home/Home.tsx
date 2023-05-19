@@ -104,6 +104,7 @@ export default function Home() {
                                      onValueChanged={(e) => setValue(
                                          'date', e.value)}/>
                         </GridItem>
+
                         <GridItem display="flex" alignItems="end">
                             <Button type="submit">
                                 <FcSearch size={'1.5rem'}
