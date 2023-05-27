@@ -1,50 +1,81 @@
-import styles from "./Footer.module.css"
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
+import { Box, IconButton, Link, Typography } from "@mui/material";
+import { styled, useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { colorRed, colorSoftBlack } from "../../utils/const/consts";
+// @ts-ignore
+import facebookImg from "../../assets/images/facebook.png";
+// @ts-ignore
+import linkedinImg from "../../assets/images/linkedin.png";
+// @ts-ignore
+import twitterImg from "../../assets/images/twitter.png";
+// @ts-ignore
+import instagramImg from "../../assets/images/instagram.png";
+
+const StyledFooter = styled('footer')(({ theme }) => ({
+    backgroundColor: colorSoftBlack,
+    height: theme.breakpoints.down("sm") ? "10vh" : "10vh",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "0 1rem",
+}));
 
 function Footer() {
-  return (
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-    <Navbar fixed="bottom" bg="dark" variant="dark">
-    <Container>
-      <Navbar.Brand > <span className={styles.brandText}>@2023 Digital House - Grupo 03</span> </Navbar.Brand>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse className="justify-content-end" id="responsive-navbar-nav">
-        <Nav className="">
-        <img
-          alt=""
-          src="../../src/core/assets/images/facebook.png"
-          width="30"
-          height="30"
-          className={styles.icon}
-        />
-        <img
-          alt=""
-          src="../../src/core/assets/images/linkedin.png"
-          width="30"
-          height="30"
-          className={styles.icon}
-        />
-        <img
-          alt=""
-          src="../../src/core/assets/images/twitter.png"
-          width="30"
-          height="30"
-          className={styles.icon}
-        />
-        <img
-          alt=""
-          src="../../src/core/assets/images/instagram.png"
-          width="30"
-          height="30"
-          className={styles.icon}
-        />
-        </Nav>
-      </Navbar.Collapse>
-    </Container>
-  </Navbar>  
-  );
-};
+    return (
+        <StyledFooter>
+            <Box>
+                <Typography
+                    variant="caption"
+                    sx={{
+                        color: "common.white",
+                        fontWeight: "bold",
+                        fontSize: isMobile ? "0.8rem" : "1rem",
+                        display: "flex",
+                        alignItems: "center",
+                    }}
+                >
+                    @2023 Digital House - Grupo 03
+                </Typography>
+            </Box>
+            <Box>
+                <IconButton href="#" color="inherit">
+                    <img
+                        src={facebookImg}
+                        width={isMobile ? 10 : 24}
+                        height={isMobile ? 15 : 24}
+                        alt="Facebook"
+                    />
+                </IconButton>
+                <IconButton href="#" color="inherit">
+                    <img
+                        src={linkedinImg}
+                        width={isMobile ? 10 : 24}
+                        height={isMobile ? 15 : 24}
+                        alt="LinkedIn"
+                    />
+                </IconButton>
+                <IconButton href="#" color="inherit">
+                    <img
+                        src={twitterImg}
+                        width={isMobile ? 10 : 24}
+                        height={isMobile ? 15 : 24}
+                        alt="Twitter"
+                    />
+                </IconButton>
+                <IconButton href="#" color="inherit">
+                    <img
+                        src={instagramImg}
+                        width={isMobile ? 10 : 24}
+                        height={isMobile ? 15 : 24}
+                        alt="Instagram"
+                    />
+                </IconButton>
+            </Box>
+        </StyledFooter>
+    );
+}
 
 export default Footer;
